@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fashion Trend</title>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    body { display: flex; height: 100vh; margin:0; font-family: Arial; background: #fafafa; }
+
+    /* Sidebar */
+    .sidebar { width: 250px; background: #fff; border-right: 1px solid #ddd; padding: 20px; }
+    .sidebar h2 { text-align: center; }
+    .nav a { display: block; padding: 10px; margin: 5px 0; text-decoration: none; color: #000; font-weight: bold; }
+    .nav a:hover { background: #000; color: #fff; border-radius: 5px; }
+
+    /* Main Content */
+    .main-content { flex: 1; padding: 20px; overflow-y: auto; }
+
+    /* Grid layout */
+    .fashion-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Card container */
+    .fashion-card {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+    }
+    .fashion-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+    }
+
+    /* Image */
+    .fashion-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    /* Content */
+    .card-content { padding: 15px; }
+    .card-title { font-size: 20px; font-weight: bold; margin-bottom: 8px; }
+    .card-subtitle { font-size: 14px; color: #555; margin-bottom: 10px; }
+    .card-date { font-size: 12px; color: #888; }
+
+    /* User Section */
+    .user-section { margin-top: 30px; font-size: 14px; }
+    .user-section a { display: inline-block; margin-top: 10px; color: #000; text-decoration: none; font-weight: bold; }
+  </style>
+</head>
+
+<body>
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h2>Baybayin.com</h2>
+    <div class="nav">
+      <a href="dashboard.html">Home</a>
+      <a href="lessons.html">Lessons</a>
+      <a href="fashion.html">Fashion Trend</a>
+      <a href="about.html">About Us</a>
+      <a href="govnews.html">Government News</a>
+      <a href="quiz.html">Assesment</a>
+    </div>
+    <div class="user-section">
+      <p><strong>PACUNO, JOHN CARLO</strong><br><small>pacunojohncarlo081@gmail.com</small></p>
+      <a href="login.html">Logout</a>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <h1>Trend</h1>
+    <div id="govnews" class="section">
+      <div class="fashion-grid">
+        <!-- Card 1 -->
+        <a class="fashion-card" href="https://shopee.ph/product/572848318/23904781854" target="_blank">
+          <img src="assets/fashion1.jpg" alt="Fashion 1">
+          <div class="card-content">
+            <div class="card-title">Baybayin Shirt 1</div>
+            <div class="card-subtitle">Trendy cultural wear</div>
+            <div class="card-date">Posted: Sept 30, 2025</div>
+          </div>
+        </a>
+
+        <!-- Card 2 -->
+        <a class="fashion-card" href="https://shopee.ph/product/1267598080/28901173465" target="_blank">
+          <img src="assets/fashion2.jpg" alt="Fashion 2">
+          <div class="card-content">
+            <div class="card-title">Baybayin Shirt 2</div>
+            <div class="card-subtitle">Minimalist design</div>
+            <div class="card-date">Posted: Sept 29, 2025</div>
+          </div>
+        </a>
+
+        <!-- Card 3 -->
+        <a class="fashion-card" href="https://shopee.ph/product/671402/17783167561" target="_blank">
+          <img src="assets/fashion3.jpg" alt="Fashion 3">
+          <div class="card-content">
+            <div class="card-title">Baybayin Shirt 3</div>
+            <div class="card-subtitle">Casual streetwear</div>
+            <div class="card-date">Posted: Sept 28, 2025</div>
+          </div>
+        </a>
+
+        <!-- Card 4 -->
+        <a class="fashion-card" href="https://shopee.ph/product/594786017/27901429573" target="_blank">
+          <img src="assets/fashion4.jpg" alt="Fashion 4">
+          <div class="card-content">
+            <div class="card-title">Baybayin Shirt 4</div>
+            <div class="card-subtitle">Modern look</div>
+            <div class="card-date">Posted: Sept 27, 2025</div>
+          </div>
+        </a>
+
+        <!-- Card 5 -->
+        <a class="fashion-card" href="https://shopee.ph/product/658001299/10485971696" target="_blank">
+          <img src="assets/fashion5.jpg" alt="Fashion 5">
+          <div class="card-content">
+            <div class="card-title">Baybayin Hoodie</div>
+            <div class="card-subtitle">Cozy street style</div>
+            <div class="card-date">Posted: Sept 26, 2025</div>
+          </div>
+        </a>
+
+        <!-- Card 6 -->
+        <a class="fashion-card" href="https://shopee.ph/product/658001299/10485971696" target="_blank">
+          <img src="assets/fashion6.jpg" alt="Fashion 6">
+          <div class="card-content">
+            <div class="card-title">Baybayin Jacket</div>
+            <div class="card-subtitle">Premium style</div>
+            <div class="card-date">Posted: Sept 25, 2025</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function showSection(sectionId, event) {
+      document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+      document.getElementById(sectionId).classList.add('active');
+
+      if (event) {
+        document.querySelectorAll('.nav a').forEach(link => link.classList.remove('active'));
+        event.target.classList.add('active');
+      }
+    }
+  </script>
+</body>
+</html>

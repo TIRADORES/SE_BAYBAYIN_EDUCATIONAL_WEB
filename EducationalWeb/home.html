@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Baybayin | Home</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      display: flex;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #fefefe;
+      color: #333;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 240px;
+      background: #fff;
+      border-right: 1px solid #ddd;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      position: fixed;
+      top: 0;
+      left: 0;
+    }
+
+    .sidebar-header h2 {
+      font-size: 22px;
+      margin-bottom: 20px;
+    }
+
+    .nav {
+      flex: 1;
+    }
+
+    .nav a {
+      display: block;
+      padding: 10px 0;
+      color: #000;
+      text-decoration: none;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .nav a.active {
+      color: black;
+    }
+
+    .nav a:hover {
+      color: #ffffff;
+      background: black;
+      border-radius: 5px;
+      padding-left: 10px;
+    }
+
+    .user-section {
+      margin-top: 20px;
+      font-size: 14px;
+      border-top: 1px solid #ddd;
+      padding-top: 15px;
+    }
+
+    .user-section p {
+      margin: 0;
+    }
+
+    .user-section a {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 8px 15px;
+      background: black;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+
+    /* Main Content */
+    .main {
+      margin-left: 240px;
+      padding: 40px 30px;
+      flex: 1;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #ffffff, #f3f3f3);
+    }
+
+    .hero {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 0;
+      min-height: 80vh;
+    }
+
+    .hero-text {
+      flex: 1 1 400px;
+      max-width: 600px;
+      padding: 20px;
+      animation: fadeInLeft 1s ease forwards;
+      opacity: 0;
+    }
+
+    .hero-text h1 {
+      font-size: 42px;
+      margin-bottom: 20px;
+      color: #1a1a1a;
+    }
+
+    .hero-text h1 span {
+      color: #aa3f39;
+    }
+
+    .hero-text p {
+      font-size: 18px;
+      color: #444;
+      margin-bottom: 20px;
+    }
+
+    .hero-image {
+      flex: 1 1 300px;
+      max-width: 500px;
+      padding: 20px;
+      animation: fadeInRight 1s ease forwards;
+      opacity: 0;
+    }
+
+    .hero-image img {
+      width: 100%;
+      border-radius: 15px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      transition: transform 0.5s ease;
+    }
+
+    .hero-image img:hover {
+      transform: scale(1.05);
+    }
+
+    /* Animations */
+    @keyframes fadeInLeft {
+      from {
+        transform: translateX(-50px);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeInRight {
+      from {
+        transform: translateX(50px);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        flex-direction: column-reverse;
+        text-align: center;
+      }
+
+      .hero-text h1 {
+        font-size: 32px;
+      }
+
+      .main {
+        margin-left: 0;
+      }
+
+      .sidebar {
+        position: static;
+        width: 100%;
+        height: auto;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px;
+        border-right: none;
+        border-bottom: 1px solid #ccc;
+      }
+
+      .sidebar-header,
+      .user-section {
+        display: none;
+      }
+
+      .nav {
+        display: flex;
+        gap: 15px;
+      }
+
+      .nav a {
+        margin-bottom: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="sidebar-header">
+      <h2>Baybayin.com</h2>
+    </div>
+
+    <div class="nav">
+      <a href="home.html" class="active">Home</a>
+      <a href="lessons.html">Lessons</a>
+      <a href="fashion.html">Fashion Trend</a>
+      <a href="about.html">About Us</a>
+      <a href="govnews.html">Government News</a>
+      <a href="quiz.html">Assesment</a>
+    </div>
+
+    <div class="user-section">
+      <p><strong>PACUNO, JOHN CARLO</strong><br>
+        <small>pacunojohncarlo081@gmail.com</small>
+      </p>
+      <a href="login.html">Logout</a>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main">
+    <section class="hero">
+      <div class="hero-text">
+        <h1><span>Baybayin</span>: The Beauty of Our Ancient Script</h1>
+        <p>
+          Baybayin is more than just an ancient Filipino script—it is a vibrant symbol of identity, culture, and pride.
+          Once used by our ancestors to write poetry, laws, and love letters, Baybayin represents a rich heritage that continues
+          to inspire modern generations.
+        </p>
+        <p>
+          Let this journey guide you through the artistic beauty and historical power of Baybayin, as we work together to preserve and revive our cultural roots.
+        </p>
+      </div>
+      <div class="assets/home.jpg">
+        <img src="assets/home.jpg" alt="Baybayin Script"/>
+      </div>
+    </section>
+  </div>
+
+</body>
+</html>

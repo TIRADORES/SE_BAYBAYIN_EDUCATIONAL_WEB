@@ -1,0 +1,248 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us</title>
+  
+  <link rel="stylesheet" href="style.css">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f5f5f5;
+    }
+
+    .about-container {
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      text-align: center;
+      animation: fadeInZoom 1s ease-in-out;
+    }
+
+    @keyframes fadeInZoom {
+      from {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .about-container h1, .about-container h2 {
+      margin-bottom: 15px;
+    }
+
+    .about-container p {
+      font-size: 16px;
+      line-height: 1.6;
+      margin-bottom: 30px;
+      animation: fadeInZoom 1.2s ease-in-out;
+    }
+
+    .social-links a {
+      margin: 0 15px;
+      font-size: 28px;
+      color: #000;
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+    .social-links a:hover {
+      color: #007BFF;
+      transform: scale(1.2);
+    }
+
+    /* Chatbot modal */
+    .chat-modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0,0,0,0.6);
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    .chat-box {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 400px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+      animation: fadeInZoom 0.5s;
+      position: relative;
+    }
+
+    .chat-box h3 {
+      margin-top: 0;
+    }
+
+    .chat-box textarea {
+      width: 100%;
+      height: 100px;
+      margin: 10px 0;
+      padding: 10px;
+      resize: none;
+    }
+
+    .chat-box button {
+      padding: 10px 20px;
+      background: #007BFF;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .chat-box button:hover {
+      background: #0056b3;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 20px;
+      cursor: pointer;
+      color: #888;
+    }
+
+    .close-btn:hover {
+      color: #000;
+    }
+
+    /* Sidebar styling (you can style this more based on your site) */
+    .sidebar {
+      width: 220px;
+      background: #ffffff;
+      height: 100vh;
+      padding: 20px;
+      color: #fff;
+      position: fixed;
+    }
+
+    .sidebar h2 {
+      color: #000000;
+    }
+
+    .nav a {
+      display: block;
+      margin: 10px 0;
+      color: #000000;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .nav a:hover {
+      color: #000000;
+    }
+
+    .main-content {
+      margin-left: 240px;
+      padding: 20px;
+    }
+
+    .user-section {
+      margin-top: 50px;
+      font-size: 14px;
+    }
+
+    .user-section a {
+      color: #ecf0f1;
+      display: inline-block;
+      margin-top: 5px;
+    }
+
+  </style>
+</head>
+<body class="dashboard">
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h2>Baybayin.com</h2>
+    <div class="nav">
+      <a href="dashboard.html">Home</a>
+      <a href="lessons.html">Lessons</a>
+      <a href="fashion.html">Fashion Trend</a>
+      <a href="about.html">About Us</a>
+      <a href="govnews.html">Government News</a>
+      <a href="quiz.html">Assesment</a>
+    </div>
+    <div class="user-section">
+      <p><strong>PACUNO, JOHN CARLO</strong><br><small>pacunojohncarlo081@gmail.com</small></p>
+      <a href="login.html">Logout</a>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="about-container">
+      <h1>About Us</h1>
+      <p>
+        Welcome to <strong>Baybayin.com</strong> — a digital platform dedicated to preserving
+        and promoting Baybayin culture through modern technology. 
+        Explore lessons, trends, and news while staying connected with us.
+      </p>
+
+      <h2>Contact Us</h2>
+      <div class="social-links">
+        <!-- Gmail (Chatbot trigger) -->
+        <a href="#" id="gmailBtn">
+          <i class="fas fa-envelope"></i>
+        </a>
+        <!-- Facebook -->
+        <a href="https://facebook.com" target="blank">
+          <i class="fab fa-facebook"></i>
+        </a>
+        <!-- Instagram -->
+        <a href="https://instagram.com" target="blank">
+          <i class="fab fa-instagram"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chat Modal -->
+  <div class="chat-modal" id="chatModal">
+    <div class="chat-box">
+      <span class="close-btn" id="closeChat">&times;</span>
+      <h3>Send a Message</h3>
+      <p>Send a message to: <strong>pacunojohncarlo81@gmail.com</strong></p>
+      <textarea placeholder="Write your message here..."></textarea>
+      <button onclick="sendFakeMessage()">Send</button>
+    </div>
+  </div>
+
+  <script>
+    const gmailBtn = document.getElementById('gmailBtn');
+    const chatModal = document.getElementById('chatModal');
+    const closeChat = document.getElementById('closeChat');
+
+    gmailBtn.addEventListener('click', () => {
+      chatModal.style.display = 'flex';
+    });
+
+    closeChat.addEventListener('click', () => {
+      chatModal.style.display = 'none';
+    });
+
+    function sendFakeMessage() {
+      alert("Your message has been sent (demo only).");
+      chatModal.style.display = 'none';
+    }
+  </script>
+
+</body>
+</html>
