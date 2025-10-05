@@ -3,14 +3,15 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Lessons</title>
+  <title>Lessons | Baybayin.com</title>
   <link rel="stylesheet" href="style.css">
   <style>
     body {
       display: flex;
       margin: 0;
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: #fafafa;
+      color: #333;
     }
 
     /* Sidebar */
@@ -22,18 +23,20 @@
       display: flex;
       flex-direction: column;
       height: 100vh;
+      position: fixed;
+      top: 0;
+      left: 0;
     }
-    .sidebar-header {
-      margin-bottom: 20px;
-    }
-    .sidebar h2 {
+
+    .sidebar-header h2 {
       font-size: 22px;
-      margin-bottom: 15px;
+      margin-bottom: 20px;
     }
 
     .nav {
-      flex: 1; /* pushes user-section down */
+      flex: 1;
     }
+
     .nav a {
       display: block;
       padding: 10px 0;
@@ -41,12 +44,15 @@
       text-decoration: none;
       font-weight: bold;
       margin-bottom: 5px;
+      transition: all 0.3s ease;
     }
+
     .nav a.active {
       color: black;
     }
+
     .nav a:hover {
-      color: #ffffff;
+      color: #fff;
       background: black;
       border-radius: 5px;
       padding-left: 10px;
@@ -58,9 +64,11 @@
       border-top: 1px solid #ddd;
       padding-top: 15px;
     }
+
     .user-section p {
       margin: 0;
     }
+
     .user-section a {
       display: inline-block;
       margin-top: 10px;
@@ -72,35 +80,86 @@
       font-size: 14px;
     }
 
-    /* Main content */
+    /* Main */
     .main {
+      margin-left: 240px;
       flex: 1;
-      padding: 30px;
+      padding: 40px;
       overflow-y: auto;
     }
+
     .lesson-block {
-      margin-bottom: 40px;
-      padding-bottom: 20px;
-      border-bottom: 1px solid #ddd;
+      background: #fff;
+      padding: 25px;
+      margin-bottom: 30px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      border-left: 4px solid #000;
+      animation: fadeIn 0.7s ease both;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
+
+    .lesson-block:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
     .lesson-title {
-      font-size: 24px;
+      font-size: 22px;
       font-weight: bold;
       margin-bottom: 8px;
       cursor: pointer;
-      color: #000000;
-    }
-    .lesson-subtitle {
-      font-size: 16px;
-      margin-bottom: 8px;
-    }
-    .lesson-date {
-      font-size: 14px;
-      color: #555;
-      margin-bottom: 15px;
+      color: #000;
+      transition: color 0.3s ease;
     }
 
-    /* Popup Video Modal */
+    .lesson-title:hover {
+      color: #0055aa;
+    }
+
+    .lesson-subtitle {
+      font-size: 16px;
+      margin-bottom: 5px;
+      color: #333;
+    }
+
+    .lesson-date {
+      font-size: 13px;
+      color: #777;
+      margin-bottom: 10px;
+    }
+
+    .citation {
+      font-size: 13px;
+      color: #555;
+      font-style: italic;
+      border-top: 1px solid #eee;
+      padding-top: 8px;
+      margin-top: 10px;
+    }
+
+    .read-more {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 8px 15px;
+      background: black;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background 0.3s ease;
+    }
+
+    .read-more:hover {
+      background: #444;
+    }
+
+    /* Fade In Animation */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Modal */
     .modal {
       display: none;
       position: fixed;
@@ -113,6 +172,7 @@
       justify-content: center;
       align-items: center;
     }
+
     .modal-content {
       background: #fff;
       border-radius: 10px;
@@ -120,13 +180,16 @@
       max-width: 720px;
       width: 90%;
       position: relative;
+      animation: fadeIn 0.5s ease both;
     }
+
     .modal-content iframe {
       width: 100%;
       aspect-ratio: 16/9;
       border: none;
       border-radius: 10px;
     }
+
     .close-btn {
       position: absolute;
       top: 8px;
@@ -136,37 +199,66 @@
       color: #333;
       cursor: pointer;
     }
+
+    @media (max-width: 768px) {
+      .main {
+        margin-left: 0;
+      }
+
+      .sidebar {
+        position: static;
+        width: 100%;
+        height: auto;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px;
+        border-right: none;
+        border-bottom: 1px solid #ccc;
+      }
+
+      .sidebar-header,
+      .user-section {
+        display: none;
+      }
+
+      .nav {
+        display: flex;
+        gap: 15px;
+      }
+
+      .nav a {
+        margin-bottom: 0;
+      }
+    }
   </style>
 </head>
 <body>
-
-  <!-- Sidebar -->
   <div class="sidebar">
     <div class="sidebar-header">
       <h2>Baybayin.com</h2>
     </div>
 
     <div class="nav">
-      <a href="dashboard.html">Home</a>
+      <a href="home.html">Home</a>
       <a href="lessons.html" class="active">Lessons</a>
       <a href="fashion.html">Fashion Trend</a>
       <a href="about.html">About Us</a>
       <a href="govnews.html">Government News</a>
-      <a href="quiz.html">Assesment</a>
+      <a href="quiz.html">Assessment</a>
+      <a href="translator.html">Baybayin Translator</a>
+    </div>
 
-      <!-- Moved here under Government News -->
-      <div class="user-section">
-        <p><strong>PACUNO, JOHN CARLO</strong><br>
-        <small>pacunojohncarlo081@gmail.com</small></p>
-        <a href="login.html">Logout</a>
-      </div>
+    <div class="user-section">
+      <p><strong>PACUNO, JOHN CARLO</strong><br>
+        <small>pacunojohncarlo081@gmail.com</small>
+      </p>
+      <a href="login.html">Logout</a>
     </div>
   </div>
 
-  <!-- Main -->
   <div class="main" id="lesson-content"></div>
 
-  <!-- Modal -->
   <div class="modal" id="videoModal">
     <div class="modal-content">
       <span class="close-btn" onclick="closeModal()">&times;</span>
@@ -175,70 +267,70 @@
   </div>
 
   <script>
-   const lessons = [
-  {
-    title: "SAMPLE LESSON 1",
-    subtitle: "The Simplicity of the Original Filipino Script | Baybayin",
-    date: "August 27, 2025",
-    videoId: "NE7mwkPdV04"
-  },
-  {
-    title: "SAMPLE LESSON 2",
-    subtitle: "Baybayin: A Filipino Script",
-    date: "September 1, 2025",
-    videoId: "NE7mwkPdV04"
-  },
-  {
-    title: "SAMPLE LESSON 3",
-    subtitle: "Baybayin 101 (Pagsulat, Pagsasalin, at Pagbabasa)",
-    date: "September 10, 2025",
-    videoId: "H0kmRql8hfM"   
-  },
-  {
-    title: "SAMPLE LESSON 4",
-    subtitle: "BAYBAYIN: Video Documentary about the Essence and Importance of the Baybayin Script",
-    date: "September 15, 2025",
-    videoId: "7GjeNO-KB8s"
-  },
-  {
-    title: "SAMPLE LESSON 5",
-    subtitle: "A complete guide to Baybayin Alphabets with all Baybayin vowels, consonants and numbers.",
-    date: "September 15, 2025",
-    link: "https://www.easynepalityping.com/baybayin-alphabet"
-  },
-  {
-    title: "SAMPLE LESSON 6",
-    subtitle: "Discover the ancient Filipino Baybayin script and its cultural significance. Learn how to write in this pre-colonial alphabet, avoid common mistakes, and connect with Philippine heritage",
-    date: "September 15, 2025",
-    link: "https://preply.com/en/blog/the-baybayin-alphabet/"
-  }
-];
+    const lessons = [
+      {
+        title: "LESSON 1",
+        subtitle: "The Simplicity of the Original Filipino Script | Baybayin",
+        date: "August 27, 2025",
+        videoId: "NE7mwkPdV04",
+        citation: "Pacuno, J.C. (2025). *The Simplicity of the Original Filipino Script | Baybayin.* Baybayin.com. Retrieved from https://baybayin.com"
+      },
+      {
+        title: "LESSON 2",
+        subtitle: "Baybayin: A Filipino Script",
+        date: "September 1, 2025",
+        videoId: "NE7mwkPdV04",
+        citation: "Pacuno, J.C. (2025). *Baybayin: A Filipino Script.* Baybayin.com. Retrieved from https://baybayin.com"
+      },
+      {
+        title: "LESSON 3",
+        subtitle: "Baybayin 101 (Pagsulat, Pagsasalin, at Pagbabasa)",
+        date: "September 10, 2025",
+        videoId: "H0kmRql8hfM",
+        citation: "Pacuno, J.C. (2025). *Baybayin 101 (Pagsulat, Pagsasalin, at Pagbabasa).* Baybayin.com."
+      },
+      {
+        title: "LESSON 4",
+        subtitle: "BAYBAYIN: Video Documentary about the Essence and Importance of the Baybayin Script",
+        date: "September 15, 2025",
+        videoId: "7GjeNO-KB8s",
+        citation: "Pacuno, J.C. (2025). *Baybayin: The Essence and Importance of the Baybayin Script.* Baybayin.com."
+      },
+      {
+        title: "LESSON 5",
+        subtitle: "A complete guide to Baybayin Alphabets with all Baybayin vowels, consonants and numbers.",
+        date: "September 15, 2025",
+        link: "https://www.easynepalityping.com/baybayin-alphabet",
+        citation: "Pacuno, J.C. (2025). *A Complete Guide to Baybayin Alphabets.* Baybayin.com."
+      },
+      {
+        title: "LESSON 6",
+        subtitle: "Discover the ancient Filipino Baybayin script and its cultural significance.",
+        date: "September 15, 2025",
+        link: "https://preply.com/en/blog/the-baybayin-alphabet/",
+        citation: "Pacuno, J.C. (2025). *Discovering the Ancient Filipino Baybayin Script.* Baybayin.com."
+      }
+    ];
 
-   function showAllLessons() {
-  const lessonDiv = document.getElementById("lesson-content");
-  lessonDiv.innerHTML = "";
-  lessons.forEach((lesson) => {
-    let content = `
-      <div class="lesson-block">
-        <div class="lesson-title" ${lesson.videoId ? `onclick="openModal('${lesson.videoId}')"` : ''}>
-          ${lesson.title}
-        </div>
-        <div class="lesson-subtitle">${lesson.subtitle} | Prepared by: Admin User</div>
-        <div class="lesson-date">Posted date: ${lesson.date}</div>
-    `;
-
-    // If it's an external link, show the button
-    if (lesson.link) {
-      content += `
-        <a class="read-more" href="${lesson.link}" target="_blank">View Lesson</a>
-      `;
+    function showAllLessons() {
+      const lessonDiv = document.getElementById("lesson-content");
+      lessonDiv.innerHTML = "";
+      lessons.forEach((lesson, index) => {
+        let content = `
+          <div class="lesson-block" style="animation-delay:${index * 0.1}s">
+            <div class="lesson-title" ${lesson.videoId ? `onclick="openModal('${lesson.videoId}')"` : ""}>
+              ${lesson.title}
+            </div>
+            <div class="lesson-subtitle">${lesson.subtitle} | Prepared by: Admin User</div>
+            <div class="lesson-date">Posted date: ${lesson.date}</div>
+        `;
+        if (lesson.link) {
+          content += `<a class="read-more" href="${lesson.link}" target="_blank">View Lesson</a>`;
+        }
+        content += `<div class="citation">${lesson.citation}</div></div>`;
+        lessonDiv.innerHTML += content;
+      });
     }
-
-    content += `</div>`; // close lesson-block
-    lessonDiv.innerHTML += content;
-  });
-}
-
 
     function openModal(videoId) {
       const modal = document.getElementById("videoModal");
@@ -256,6 +348,5 @@
 
     showAllLessons();
   </script>
-
 </body>
 </html>

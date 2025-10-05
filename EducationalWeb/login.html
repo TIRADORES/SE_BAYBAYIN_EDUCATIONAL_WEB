@@ -43,8 +43,9 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: top;
+      object-position: center;
       filter: brightness(0.9);
+      border-left: 1px solid #000;
     }
 
     @media (min-width: 992px) {
@@ -125,7 +126,7 @@
 
         <!-- Login Form -->
         <form id="loginForm">
-          <label>Email / Username:</label>
+          <label>Email / Username / Full Name:</label>
           <input type="text" id="username" required>
 
           <label>Password:</label>
@@ -143,24 +144,45 @@
 
     <!-- Right Side (Image) -->
     <div class="login-right">
-      <img src="assets/login-image.jpg" alt="Login Image">
+      <img id="loginImage" alt="Login Image">
     </div>
   </div>
 
   <script>
-    
+    // === Load login image safely ===
+    const img = document.getElementById("loginImage");
+    const testImage = new Image();
+    testImage.src = "assets/login-image.jpg";
+    testImage.onload = () => img.src = "assets/login-image.jpg";
+    testImage.onerror = () => img.src = "login-image.jpg";
+
+    // === Login Functionality ===
     document.getElementById("loginForm").addEventListener("submit", function(e) {
-      e.preventDefault(); // prevent page reload
+      e.preventDefault();
 
       const username = document.getElementById("username").value.trim();
       const password = document.getElementById("password").value.trim();
       const errorMsg = document.getElementById("errorMsg");
 
-      // Default account check
-      if ((username === "user123" || username === "user123@gmail.com") && password === "user123") {
-        window.location.href = "dashboard.html"; // redirect if correct
+      // Load users from localStorage
+      const users = JSON.parse(localStorage.getItem("users")) || [];
+
+      // Find matching user by username, email, or fullname
+      const foundUser = users.find(user =>
+        (
+          user.email.toLowerCase() === username.toLowerCase() ||
+          user.username?.toLowerCase() === username.toLowerCase() ||
+          user.fullname.toLowerCase() === username.toLowerCase()
+        ) && user.password === password
+      );
+
+      if (foundUser) {
+        // ✅ Successful login
+        localStorage.setItem("currentUser", JSON.stringify(foundUser));
+        window.location.href = "dashboard.html";
       } else {
-        errorMsg.style.display = "block"; // show error
+        // ❌ Invalid credentials
+        errorMsg.style.display = "block";
       }
     });
   </script>

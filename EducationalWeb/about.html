@@ -10,11 +10,12 @@
   <!-- Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    body {
-      font-family: Arial, sans-serif;
+     body {
+      display: flex;
       margin: 0;
-      padding: 0;
-      background: #f5f5f5;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #fafafa;
+      color: #333;
     }
 
     .about-container {
@@ -124,51 +125,103 @@
     }
 
     /* Sidebar styling (you can style this more based on your site) */
-    .sidebar {
-      width: 220px;
-      background: #ffffff;
-      height: 100vh;
+     .sidebar {
+      width: 240px;
+      background: #fff;
+      border-right: 1px solid #ddd;
       padding: 20px;
-      color: #fff;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
       position: fixed;
+      top: 0;
+      left: 0;
     }
 
-    .sidebar h2 {
-      color: #000000;
+    .sidebar-header h2 {
+      font-size: 22px;
+      margin-bottom: 20px;
+    }
+
+    .nav {
+      flex: 1;
     }
 
     .nav a {
       display: block;
-      margin: 10px 0;
-      color: #000000;
+      padding: 10px 0;
+      color: #000;
       text-decoration: none;
-      transition: 0.3s;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .nav a.active {
+      color: black;
     }
 
     .nav a:hover {
-      color: #000000;
-    }
-
-    .main-content {
-      margin-left: 240px;
-      padding: 20px;
+      color: #ffffff;
+      background: black;
+      border-radius: 5px;
+      padding-left: 10px;
     }
 
     .user-section {
-      margin-top: 50px;
+      margin-top: 20px;
       font-size: 14px;
+      border-top: 1px solid #ddd;
+      padding-top: 15px;
+    }
+
+    .user-section p {
+      margin: 0;
     }
 
     .user-section a {
-      color: #ecf0f1;
       display: inline-block;
-      margin-top: 5px;
+      margin-top: 10px;
+      padding: 8px 15px;
+      background: black;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 14px;
     }
 
+    /* Main content */
+    .main {
+      margin-left: 240px; /* shift content since sidebar is fixed */
+      flex: 1;
+      padding: 30px;
+      overflow-y: auto;
+    }
+
+    .lesson-block {
+      margin-bottom: 40px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #ddd;
+    }
+    .lesson-title {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 8px;
+      cursor: pointer;
+      color: #000000;
+    }
+    .lesson-subtitle {
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+    .lesson-date {
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 15px;
+    }
   </style>
 </head>
 <body class="dashboard">
-
+  
   <!-- Sidebar -->
   <div class="sidebar">
     <h2>Baybayin.com</h2>
@@ -178,7 +231,9 @@
       <a href="fashion.html">Fashion Trend</a>
       <a href="about.html">About Us</a>
       <a href="govnews.html">Government News</a>
-      <a href="quiz.html">Assesment</a>
+      <a href="quiz.html">Assesment</a>.
+      <a href="translator.html">Baybayin Translator</a>
+      
     </div>
     <div class="user-section">
       <p><strong>PACUNO, JOHN CARLO</strong><br><small>pacunojohncarlo081@gmail.com</small></p>

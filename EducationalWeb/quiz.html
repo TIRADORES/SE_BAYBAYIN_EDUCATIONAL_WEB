@@ -4,58 +4,125 @@
   <meta charset="UTF-8">
   <title>Baybayin Quiz</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Tagalog&display=swap');
+
+    .noto-sans-tagalog-regular {
+      font-family: "Noto Sans Tagalog", sans-serif;
+      font-weight: 400;
+      font-style: normal;
+    }
+
     body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: url("https://i.ibb.co/4MwsZzy/beach-bg.png") no-repeat center/cover;
-      height: 100vh;
       display: flex;
-      justify-content: center;
-      align-items: center;
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #fafafa;
+      color: #333;
+      height: 100vh;
+      overflow: hidden;
     }
 
     /* Sidebar */
     .sidebar {
-      position: fixed;
-      left: 0;
-      top: 0;
-      width: 220px;
-      height: 100%;
+      width: 240px;
       background: #fff;
+      border-right: 1px solid #ddd;
       padding: 20px;
-      box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 2;
     }
-    .sidebar h2 { margin-bottom: 20px; }
-    .sidebar .nav a {
+
+    .sidebar-header h2 {
+      font-size: 22px;
+      margin-bottom: 20px;
+    }
+
+    .nav {
+      flex: 1;
+    }
+
+    .nav a {
       display: block;
-      margin: 10px 0;
+      padding: 10px 0;
+      color: #000;
       text-decoration: none;
-      color: #333;
+      font-weight: bold;
+      margin-bottom: 5px;
     }
-    .sidebar .user-section {
-      position: absolute;
-      bottom: 20px;
+
+    .nav a.active {
+      color: black;
+    }
+
+    .nav a:hover {
+      color: #ffffff;
+      background: black;
+      border-radius: 5px;
+      padding-left: 10px;
+    }
+
+    .user-section {
+      margin-top: 20px;
       font-size: 14px;
+      border-top: 1px solid #ddd;
+      padding-top: 15px;
     }
-    .sidebar .user-section a {
+
+    .user-section p {
+      margin: 0;
+    }
+
+    .user-section a {
       display: inline-block;
       margin-top: 10px;
+      padding: 8px 15px;
+      background: black;
+      color: white;
       text-decoration: none;
-      color: red;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+
+    /* Background Video */
+    .bg-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+
+    /* Main content */
+    .main {
+      flex: 1;
+      margin-left: 240px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      z-index: 1;
     }
 
     /* Quiz container */
     .container {
       text-align: center;
-      background: rgba(255,255,255,0.9);
+      background: rgba(255, 255, 255, 0.9);
       padding: 30px;
       border-radius: 20px;
       width: 600px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-      margin-left: 250px; /* push content aside for sidebar */
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
     }
 
-    h1 { margin-bottom: 20px; }
+    h1 {
+      margin-bottom: 20px;
+    }
 
     .btn {
       display: block;
@@ -69,7 +136,9 @@
       transition: 0.3s;
     }
 
-    .btn:hover { opacity: 0.9; }
+    .btn:hover {
+      opacity: 0.9;
+    }
 
     .green { background: #4CAF50 !important; color: white; }
     .red { background: #f44336 !important; color: white; }
@@ -82,12 +151,49 @@
       font-size: 20px;
       border-radius: 15px;
       padding: 15px 30px;
+      cursor: pointer;
     }
 
     .choices { margin-top: 20px; }
+
+    .result h2 {
+      font-size: 28px;
+      margin-bottom: 15px;
+    }
+
+    .score {
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+
+    .restart-btn {
+      background: #4CAF50;
+      color: white;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 10px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    .restart-btn:hover {
+      background: #45a049;
+    }
+
+    /* Baybayin font size and styling */
+    .baybayin {
+      font-size: 50px;
+      margin-bottom: 15px;
+      color: #000;
+    }
   </style>
 </head>
 <body>
+
+  <video autoplay muted loop playsinline class="bg-video">
+    <source src="assets/Game_BG.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
 
   <!-- Sidebar -->
   <div class="sidebar">
@@ -98,7 +204,8 @@
       <a href="fashion.html">Fashion Trend</a>
       <a href="about.html">About Us</a>
       <a href="govnews.html">Government News</a>
-      <a href="quiz.html">Assesment</a>
+      <a href="quiz.html" class="active">Assessment</a>
+      <a href="translator.html">Baybayin Translator</a>
     </div>
     <div class="user-section">
       <p><strong>PACUNO, JOHN CARLO</strong><br><small>pacunojohncarlo081@gmail.com</small></p>
@@ -106,98 +213,69 @@
     </div>
   </div>
 
-  <!-- Quiz Menu -->
-  <div class="container" id="menu">
-    <h1>QUIZ BAYBAYIN</h1>
-    <button class="start-btn" onclick="startQuiz('history')">📜 History of Baybayin</button>
-    <button class="start-btn" onclick="startQuiz('letters')">🔤 Baybayin Letters</button>
-  </div>
+  <!-- Main Content -->
+  <div class="main">
+    <!-- Quiz Menu -->
+    <div class="container" id="menu">
+      <h1>QUIZ BAYBAYIN</h1>
+      <button class="start-btn" onclick="startQuiz('history')">📜 History of Baybayin</button>
+      <button class="start-btn" onclick="startQuiz('letters')">🔤 Baybayin Letters</button>
+    </div>
 
-  <!-- Quiz Screen -->
-  <div class="container" id="quiz" style="display:none;">
-    <h2 id="question"></h2>
-    <div class="choices" id="choices"></div>
-    <p id="progress"></p>
+    <!-- Quiz Screen -->
+    <div class="container" id="quiz" style="display:none;">
+      <h2 id="question"></h2>
+      <div id="baybayinChar" class="noto-sans-tagalog-regular baybayin"></div>
+      <div class="choices" id="choices"></div>
+      <p id="progress"></p>
+    </div>
+
+    <!-- Result Screen -->
+    <div class="container result" id="result" style="display:none;">
+      <h2>🎉 Quiz Completed!</h2>
+      <p class="score" id="score"></p>
+      <button class="restart-btn" onclick="restartQuiz()">🔁 Restart Quiz</button>
+    </div>
   </div>
 
   <script>
-    // 10 Questions: History of Baybayin
     const historyQuestions = [
-      {
-        question: "Baybayin is a writing system used in?",
-        answers: ["Philippines", "Japan", "Thailand", "China"],
-        correct: 0
-      },
-      {
-        question: "Baybayin is considered a type of?",
-        answers: ["Alphabet", "Syllabary", "Hieroglyphs", "Runes"],
-        correct: 1
-      },
-      {
-        question: "What century was Baybayin widely used?",
-        answers: ["14th–18th century", "5th–7th century", "19th century", "21st century"],
-        correct: 0
-      },
-      {
-        question: "Which colonizers tried to suppress Baybayin?",
-        answers: ["Spanish", "British", "Japanese", "Americans"],
-        correct: 0
-      },
-      {
-        question: "Who documented Baybayin in 1593?",
-        answers: ["Antonio Pigafetta", "Pedro Chirino", "Magellan", "Juan de Plasencia"],
-        correct: 3
-      },
-      {
-        question: "What was the first book printed in Baybayin script?",
-        answers: ["Doctrina Christiana", "Noli Me Tangere", "Florante at Laura", "Pasyon"],
-        correct: 0
-      },
-      {
-        question: "What does 'Baybayin' literally mean?",
-        answers: ["To spell", "To write", "To draw", "To carve"],
-        correct: 0
-      },
-      {
-        question: "Baybayin belongs to what family of scripts?",
-        answers: ["Latin", "Arabic", "Brahmic", "Cyrillic"],
-        correct: 2
-      },
-      {
-        question: "What did the Spanish add to Baybayin?",
-        answers: ["Virama (kudlit)", "Accent marks", "Capital letters", "Numbers"],
-        correct: 0
-      },
-      {
-        question: "Where is Baybayin officially recognized today?",
-        answers: ["Japan", "Philippines", "Indonesia", "Malaysia"],
-        correct: 1
-      }
+      { question: "Baybayin is a writing system used in?", answers: ["Philippines", "Japan", "Thailand", "China"], correct: 0 },
+      { question: "Baybayin is considered a type of?", answers: ["Alphabet", "Syllabary", "Hieroglyphs", "Runes"], correct: 1 },
+      { question: "What century was Baybayin widely used?", answers: ["14th–18th century", "5th–7th century", "19th century", "21st century"], correct: 0 },
+      { question: "Which colonizers tried to suppress Baybayin?", answers: ["Spanish", "British", "Japanese", "Americans"], correct: 0 },
+      { question: "Who documented Baybayin in 1593?", answers: ["Antonio Pigafetta", "Pedro Chirino", "Magellan", "Juan de Plasencia"], correct: 3 },
+      { question: "What was the first book printed in Baybayin script?", answers: ["Doctrina Christiana", "Noli Me Tangere", "Florante at Laura", "Pasyon"], correct: 0 },
+      { question: "What does 'Baybayin' literally mean?", answers: ["To spell", "To write", "To draw", "To carve"], correct: 0 },
+      { question: "Baybayin belongs to what family of scripts?", answers: ["Latin", "Arabic", "Brahmic", "Cyrillic"], correct: 2 },
+      { question: "What did the Spanish add to Baybayin?", answers: ["Virama (kudlit)", "Accent marks", "Capital letters", "Numbers"], correct: 0 },
+      { question: "Where is Baybayin officially recognized today?", answers: ["Japan", "Philippines", "Indonesia", "Malaysia"], correct: 1 }
     ];
 
-    // 10 Questions: Baybayin Letter Identification
     const letterQuestions = [
-      { question: "What Baybayin is this? (ᜀ)", answers: ["a", "ka", "la", "ba"], correct: 0 },
-      { question: "What Baybayin is this? (ᜊ)", answers: ["ka", "o", "ge/gi", "ba"], correct: 3 },
-      { question: "What Baybayin is this? (ᜃ)", answers: ["ba", "ka", "la", "ta"], correct: 1 },
-      { question: "What Baybayin is this? (ᜄ)", answers: ["ga", "ha", "ma", "sa"], correct: 0 },
-      { question: "What Baybayin is this? (ᜑ)", answers: ["pa", "na", "ha", "ra"], correct: 2 },
-      { question: "What Baybayin is this? (ᜎ)", answers: ["la", "ka", "ma", "ba"], correct: 0 },
-      { question: "What Baybayin is this? (ᜋ)", answers: ["na", "ma", "pa", "ta"], correct: 1 },
-      { question: "What Baybayin is this? (ᜈ)", answers: ["na", "ya", "wa", "sa"], correct: 0 },
-      { question: "What Baybayin is this? (ᜉ)", answers: ["pa", "ba", "da", "ka"], correct: 0 },
-      { question: "What Baybayin is this? (ᜐ)", answers: ["ta", "sa", "ya", "ra"], correct: 1 }
+      { question: "Identify the Baybayin character", baybayin: "ᜀ", answers: ["a", "ka", "la", "ba"], correct: 0 },
+      { question: "Identify the Baybayin character", baybayin: "ᜊ", answers: ["ka", "o", "ge/gi", "ba"], correct: 3 },
+      { question: "Identify the Baybayin character", baybayin: "ᜃ", answers: ["ba", "ka", "la", "ta"], correct: 1 },
+      { question: "Identify the Baybayin character", baybayin: "ᜄ", answers: ["ga", "ha", "ma", "sa"], correct: 0 },
+      { question: "Identify the Baybayin character", baybayin: "ᜑ", answers: ["pa", "na", "ha", "ra"], correct: 2 },
+      { question: "Identify the Baybayin character", baybayin: "ᜎ", answers: ["la", "ka", "ma", "ba"], correct: 0 },
+      { question: "Identify the Baybayin character", baybayin: "ᜋ", answers: ["na", "ma", "pa", "ta"], correct: 1 },
+      { question: "Identify the Baybayin character", baybayin: "ᜈ", answers: ["na", "ya", "wa", "sa"], correct: 0 },
+      { question: "Identify the Baybayin character", baybayin: "ᜉ", answers: ["pa", "ba", "da", "ka"], correct: 0 },
+      { question: "Identify the Baybayin character", baybayin: "ᜐ", answers: ["ta", "sa", "ya", "ra"], correct: 1 }
     ];
 
     let currentQuiz = [];
     let currentQuestionIndex = 0;
+    let score = 0;
 
     function startQuiz(type) {
       document.getElementById("menu").style.display = "none";
       document.getElementById("quiz").style.display = "block";
-
+      document.getElementById("result").style.display = "none";
       currentQuiz = type === "history" ? historyQuestions : letterQuestions;
       currentQuestionIndex = 0;
+      score = 0;
       showQuestion();
     }
 
@@ -205,19 +283,29 @@
       const q = currentQuiz[currentQuestionIndex];
       document.getElementById("question").innerText = q.question;
       const choicesDiv = document.getElementById("choices");
+      const baybayinDiv = document.getElementById("baybayinChar");
+
+      // Show Baybayin only if it exists
+      if (q.baybayin) {
+        baybayinDiv.innerText = q.baybayin;
+        baybayinDiv.style.display = "block";
+      } else {
+        baybayinDiv.style.display = "none";
+      }
+
       choicesDiv.innerHTML = "";
 
       q.answers.forEach((ans, i) => {
         const btn = document.createElement("button");
         btn.innerText = ans;
         btn.classList.add("btn");
-        btn.classList.add(["yellow","green","blue","red"][i]); // unique colors
+        btn.classList.add(["yellow", "green", "blue", "red"][i]);
         btn.onclick = () => checkAnswer(i, btn);
         choicesDiv.appendChild(btn);
       });
 
       document.getElementById("progress").innerText =
-        `Question ${currentQuestionIndex+1} of ${currentQuiz.length}`;
+        `Question ${currentQuestionIndex + 1} of ${currentQuiz.length}`;
     }
 
     function checkAnswer(selected, btn) {
@@ -226,6 +314,7 @@
 
       if (selected === q.correct) {
         btn.classList.add("green");
+        score++;
       } else {
         btn.classList.add("red");
         buttons[q.correct].classList.add("green");
@@ -238,9 +327,21 @@
         if (currentQuestionIndex < currentQuiz.length) {
           showQuestion();
         } else {
-          document.getElementById("quiz").innerHTML = "<h2>🎉 Quiz Completed!</h2>";
+          showResult();
         }
       }, 1200);
+    }
+
+    function showResult() {
+      document.getElementById("quiz").style.display = "none";
+      document.getElementById("result").style.display = "block";
+      document.getElementById("score").innerText =
+        `You scored ${score} out of ${currentQuiz.length}!`;
+    }
+
+    function restartQuiz() {
+      document.getElementById("result").style.display = "none";
+      document.getElementById("menu").style.display = "block";
     }
   </script>
 </body>

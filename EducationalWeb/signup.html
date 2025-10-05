@@ -8,29 +8,35 @@
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #fff;
-      color: #000;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: linear-gradient(135deg, #f9f9f9, #eaeaea);
       display: flex;
       justify-content: center;
       align-items: center;
       min-height: 100vh;
+      color: #000;
     }
 
     .form-box {
       background: #fff;
       border: 1px solid #000;
-      border-radius: 10px;
+      border-radius: 12px;
       padding: 30px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      max-width: 400px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      max-width: 420px;
       width: 100%;
       text-align: center;
     }
 
     .form-box h1 {
       font-weight: 900;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
+    }
+
+    .form-box h3 {
+      font-size: 16px;
+      color: #555;
+      margin-bottom: 25px;
     }
 
     form label {
@@ -38,6 +44,7 @@
       text-align: left;
       font-size: 14px;
       margin-bottom: 5px;
+      font-weight: bold;
     }
 
     form input {
@@ -47,25 +54,52 @@
       border: 1px solid #000;
       border-radius: 5px;
       background: #f9f9f9;
+      font-size: 14px;
     }
 
     form button {
-  width: 100%;
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  background: #000;
-  color: #fff;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background 0.3s, transform 0.2s;
-}
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      background: #000;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+    }
 
-form button:hover {
-  background: #222;   /* Darker black instead of gray */
-  color: #fff;        /* Keep text white */
-  transform: scale(1.02); /* Subtle zoom effect for modern look */
-}
+    form button:hover {
+      background: #222;
+      transform: scale(1.02);
+    }
+
+    .privacy-container {
+      background: #f8f8f8;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 15px;
+      margin-bottom: 15px;
+      text-align: left;
+      max-height: 160px;
+      overflow-y: auto;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .privacy-container strong {
+      color: #000;
+    }
+
+    .consent {
+      text-align: left;
+      font-size: 13px;
+      margin-bottom: 15px;
+    }
+
+    .consent input {
+      margin-right: 5px;
+    }
 
     .form-box p {
       margin-top: 15px;
@@ -73,34 +107,90 @@ form button:hover {
     }
 
     .form-box a {
-  color: #000;          /* Black text by default */
-  font-weight: bold;
-  text-decoration: none;
-  transition: color 0.3s, text-decoration 0.3s;
-}
+      color: #000;
+      font-weight: bold;
+      text-decoration: none;
+      transition: color 0.3s, text-decoration 0.3s;
+    }
 
     .form-box a:hover {
-  color: #ffffff;          /* Darker gray on hover, stays readable */
-  text-decoration: underline;
-}
+      color: #555;
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
   <div class="form-box">
     <h1>Sign Up</h1>
-    <form action="dashboard.html" method="get">
+    <h3>Create your Baybayin.com account</h3>
+
+    <!-- Republic Act Privacy Container -->
+    <div class="privacy-container">
+      <strong>Republic Act No. 10173 – Data Privacy Act of 2012</strong><br><br>
+      By proceeding, you acknowledge that Baybayin.com will collect and process the personal data you provide 
+      (such as your name, email, and password) in accordance with the Data Privacy Act of 2012 and its 
+      Implementing Rules and Regulations (IRR).<br><br>
+      Your data will only be used for educational, login, and system improvement purposes. 
+      We ensure that your personal information remains confidential and protected from unauthorized access.
+    </div>
+
+    <form id="signupForm">
       <label>Full Name:</label>
       <input type="text" name="fullname" required>
+
+      <label>Username:</label>
+      <input type="text" name="username" required>
 
       <label>Email:</label>
       <input type="email" name="email" required>
 
       <label>Password:</label>
-      <input type="password" name="password" required>
+      <input type="password" name="password" minlength="6" required>
+
+      <div class="consent">
+        <input type="checkbox" id="agree" required>
+        <label for="agree">I have read and agree to the collection and use of my data in accordance with Republic Act No. 10173 (Data Privacy Act of 2012).</label>
+      </div>
 
       <button type="submit">Sign Up</button>
     </form>
+
     <p>Already have an account? <a href="login.html">Login</a></p>
   </div>
+
+  <script>
+    const signupForm = document.getElementById("signupForm");
+
+    signupForm.addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const fullname = signupForm.fullname.value.trim();
+      const username = signupForm.username.value.trim();
+      const email = signupForm.email.value.trim();
+      const password = signupForm.password.value.trim();
+      const checkbox = document.getElementById("agree");
+
+      if (!checkbox.checked) {
+        alert("⚠️ Please agree to the Data Privacy Act notice before signing up.");
+        return;
+      }
+
+      // Load existing users from localStorage
+      let users = JSON.parse(localStorage.getItem("users")) || [];
+
+      // Check if username or email already exists
+      if (users.some(user => user.email === email || user.username === username)) {
+        alert("❌ This username or email is already registered. Please login.");
+        return;
+      }
+
+      // Save new user (with username)
+      users.push({ fullname, username, email, password });
+      localStorage.setItem("users", JSON.stringify(users));
+
+      alert("✅ Signup successful! You can now login.");
+      window.location.href = "login.html"; // redirect
+    });
+  </script>
 </body>
 </html>
