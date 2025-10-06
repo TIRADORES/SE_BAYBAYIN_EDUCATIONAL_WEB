@@ -1,10 +1,11 @@
-
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Government News</title>
   <link rel="stylesheet" href="style.css">
+  <!-- Font Awesome for sound icon -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     /* === Layout & Sidebar === */
     body {
@@ -26,6 +27,7 @@
       position: fixed;
       top: 0;
       left: 0;
+      z-index: 2;
     }
 
     .sidebar-header h2 {
@@ -120,6 +122,26 @@
       z-index: 2;
     }
 
+    /* 🔊 Sound Icon */
+    #soundIcon {
+      position: absolute;
+      bottom: 20px;
+      left: 25px;
+      font-size: 28px;
+      color: white;
+      cursor: pointer;
+      background: rgba(0, 0, 0, 0.4);
+      padding: 10px;
+      border-radius: 50%;
+      transition: 0.3s ease;
+      z-index: 3;
+    }
+
+    #soundIcon:hover {
+      background: rgba(0, 0, 0, 0.7);
+      transform: scale(1.1);
+    }
+
     /* === News Containers === */
     .news-section {
       padding: 30px;
@@ -186,6 +208,17 @@
     .read-more:hover {
       background: #444;
     }
+
+    @media (max-width: 768px) {
+      #soundIcon {
+        font-size: 24px;
+        padding: 8px;
+      }
+
+      .video-header h1 {
+        font-size: 2em;
+      }
+    }
   </style>
 </head>
 <body>
@@ -211,11 +244,13 @@
   <div class="main-content">
     <!-- Video Header Section -->
     <div class="video-header">
-      <video autoplay muted loop playsinline>
+      <video id="govVideo" autoplay muted loop playsinline>
         <source src="assets/gov_news_BG.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
       <h1>Government News</h1>
+      <!-- Sound Toggle Icon -->
+      <div id="soundIcon"><i class="fas fa-volume-mute"></i></div>
     </div>
 
     <!-- News Section -->
@@ -245,5 +280,18 @@
       </div>
     </div>
   </div>
+
+  <!-- 🎵 Sound Toggle Script -->
+  <script>
+    const govVideo = document.getElementById('govVideo');
+    const soundIcon = document.getElementById('soundIcon');
+
+    soundIcon.addEventListener('click', () => {
+      govVideo.muted = !govVideo.muted;
+      soundIcon.innerHTML = govVideo.muted
+        ? '<i class="fas fa-volume-mute"></i>'
+        : '<i class="fas fa-volume-up"></i>';
+    });
+  </script>
 </body>
 </html>

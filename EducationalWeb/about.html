@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,8 +8,9 @@
   <link rel="stylesheet" href="style.css">
   <!-- Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
   <style>
-     body {
+    body {
       display: flex;
       margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -18,114 +18,8 @@
       color: #333;
     }
 
-    .about-container {
-      max-width: 800px;
-      margin: 50px auto;
-      padding: 20px;
-      background: #fff;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      text-align: center;
-      animation: fadeInZoom 1s ease-in-out;
-    }
-
-    @keyframes fadeInZoom {
-      from {
-        opacity: 0;
-        transform: scale(0.95);
-      }
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
-    }
-
-    .about-container h1, .about-container h2 {
-      margin-bottom: 15px;
-    }
-
-    .about-container p {
-      font-size: 16px;
-      line-height: 1.6;
-      margin-bottom: 30px;
-      animation: fadeInZoom 1.2s ease-in-out;
-    }
-
-    .social-links a {
-      margin: 0 15px;
-      font-size: 28px;
-      color: #000;
-      transition: transform 0.3s ease, color 0.3s ease;
-    }
-
-    .social-links a:hover {
-      color: #007BFF;
-      transform: scale(1.2);
-    }
-
-    /* Chatbot modal */
-    .chat-modal {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background-color: rgba(0,0,0,0.6);
-      justify-content: center;
-      align-items: center;
-      z-index: 999;
-    }
-
-    .chat-box {
-      background: #fff;
-      padding: 20px;
-      border-radius: 10px;
-      width: 90%;
-      max-width: 400px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.3);
-      animation: fadeInZoom 0.5s;
-      position: relative;
-    }
-
-    .chat-box h3 {
-      margin-top: 0;
-    }
-
-    .chat-box textarea {
-      width: 100%;
-      height: 100px;
-      margin: 10px 0;
-      padding: 10px;
-      resize: none;
-    }
-
-    .chat-box button {
-      padding: 10px 20px;
-      background: #007BFF;
-      color: #fff;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    .chat-box button:hover {
-      background: #0056b3;
-    }
-
-    .close-btn {
-      position: absolute;
-      top: 10px;
-      right: 15px;
-      font-size: 20px;
-      cursor: pointer;
-      color: #888;
-    }
-
-    .close-btn:hover {
-      color: #000;
-    }
-
-    /* Sidebar styling (you can style this more based on your site) */
-     .sidebar {
+    /* Sidebar */
+    .sidebar {
       width: 240px;
       background: #fff;
       border-right: 1px solid #ddd;
@@ -138,7 +32,7 @@
       left: 0;
     }
 
-    .sidebar-header h2 {
+    .sidebar h2 {
       font-size: 22px;
       margin-bottom: 20px;
     }
@@ -157,11 +51,14 @@
     }
 
     .nav a.active {
-      color: black;
+      background: black;
+      color: white;
+      border-radius: 5px;
+      padding-left: 10px;
     }
 
     .nav a:hover {
-      color: #ffffff;
+      color: white;
       background: black;
       border-radius: 5px;
       padding-left: 10px;
@@ -190,38 +87,148 @@
     }
 
     /* Main content */
-    .main {
-      margin-left: 240px; /* shift content since sidebar is fixed */
+    .main-content {
+      margin-left: 240px;
       flex: 1;
       padding: 30px;
       overflow-y: auto;
     }
 
-    .lesson-block {
-      margin-bottom: 40px;
-      padding-bottom: 20px;
-      border-bottom: 1px solid #ddd;
+    .about-container {
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      text-align: center;
+      animation: fadeInZoom 1s ease-in-out;
     }
-    .lesson-title {
-      font-size: 24px;
-      font-weight: bold;
-      margin-bottom: 8px;
-      cursor: pointer;
-      color: #000000;
+
+    @keyframes fadeInZoom {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
     }
-    .lesson-subtitle {
-      font-size: 16px;
-      margin-bottom: 8px;
-    }
-    .lesson-date {
-      font-size: 14px;
-      color: #555;
+
+    .about-container h1, .about-container h2 {
       margin-bottom: 15px;
+    }
+
+    .about-container p {
+      font-size: 16px;
+      line-height: 1.6;
+      margin-bottom: 30px;
+    }
+
+    /* ICONS CONTAINER */
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 20px;
+    }
+
+    .icon {
+      position: relative;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .icon span {
+      height: 55px;
+      width: 55px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      color: white;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    .icon .tooltip {
+      position: absolute;
+      top: -35px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #000;
+      color: #fff;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 13px;
+      opacity: 0;
+      transition: all 0.3s ease;
+      pointer-events: none;
+    }
+
+    .icon:hover .tooltip {
+      opacity: 1;
+      top: -45px;
+    }
+
+    /* ICON COLORS */
+    .facebook span { background: #1877f2; }
+    .instagram span {
+      background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+    }
+    .gmail span { background: #D44638; }
+
+    .icon:hover span {
+      transform: scale(1.15);
+      box-shadow: 0 6px 14px rgba(0,0,0,0.25);
+    }
+
+    /* Chat Modal */
+    .chat-modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0,0,0,0.6);
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    .chat-box {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 400px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+      animation: fadeInZoom 0.5s;
+      position: relative;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 20px;
+      cursor: pointer;
+      color: #888;
+    }
+
+    .close-btn:hover { color: #000; }
+
+    .chat-box button {
+      padding: 10px 20px;
+      background: #007BFF;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .chat-box button:hover {
+      background: #0056b3;
     }
   </style>
 </head>
 <body class="dashboard">
-  
+
   <!-- Sidebar -->
   <div class="sidebar">
     <h2>Baybayin.com</h2>
@@ -229,11 +236,10 @@
       <a href="dashboard.html">Home</a>
       <a href="lessons.html">Lessons</a>
       <a href="fashion.html">Fashion Trend</a>
-      <a href="about.html">About Us</a>
+      <a href="about.html" class="active">About Us</a>
       <a href="govnews.html">Government News</a>
-      <a href="quiz.html">Assesment</a>.
+      <a href="quiz.html">Assessment</a>
       <a href="translator.html">Baybayin Translator</a>
-      
     </div>
     <div class="user-section">
       <p><strong>PACUNO, JOHN CARLO</strong><br><small>pacunojohncarlo081@gmail.com</small></p>
@@ -252,18 +258,23 @@
       </p>
 
       <h2>Contact Us</h2>
-      <div class="social-links">
-        <!-- Gmail (Chatbot trigger) -->
-        <a href="#" id="gmailBtn">
-          <i class="fas fa-envelope"></i>
-        </a>
+      <div class="social-icons">
+        <!-- Gmail -->
+        <div class="icon gmail" id="gmailBtn">
+          <div class="tooltip">Gmail</div>
+          <span><i class="fas fa-envelope"></i></span>
+        </div>
+
         <!-- Facebook -->
-        <a href="https://facebook.com" target="blank">
-          <i class="fab fa-facebook"></i>
+        <a href="https://facebook.com" target="_blank" class="icon facebook">
+          <div class="tooltip">Facebook</div>
+          <span><i class="fab fa-facebook-f"></i></span>
         </a>
+
         <!-- Instagram -->
-        <a href="https://instagram.com" target="blank">
-          <i class="fab fa-instagram"></i>
+        <a href="https://instagram.com" target="_blank" class="icon instagram">
+          <div class="tooltip">Instagram</div>
+          <span><i class="fab fa-instagram"></i></span>
         </a>
       </div>
     </div>
@@ -298,6 +309,5 @@
       chatModal.style.display = 'none';
     }
   </script>
-
 </body>
 </html>

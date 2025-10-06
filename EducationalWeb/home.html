@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Baybayin | Home</title>
   <link rel="stylesheet" href="style.css" />
+  <!-- Font Awesome for sound icon -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
     * {
       box-sizing: border-box;
@@ -31,6 +33,7 @@
       position: fixed;
       top: 0;
       left: 0;
+      z-index: 2;
     }
 
     .sidebar-header h2 {
@@ -52,12 +55,15 @@
     }
 
     .nav a.active {
-      color: black;
+      background: black;
+      color: white;
+      border-radius: 5px;
+      padding-left: 10px;
     }
 
     .nav a:hover {
-      color: #ffffff;
       background: black;
+      color: white;
       border-radius: 5px;
       padding-left: 10px;
     }
@@ -67,10 +73,6 @@
       font-size: 14px;
       border-top: 1px solid #ddd;
       padding-top: 15px;
-    }
-
-    .user-section p {
-      margin: 0;
     }
 
     .user-section a {
@@ -89,10 +91,10 @@
       margin-left: 240px;
       padding: 40px 30px;
       flex: 1;
-      min-height: 100vh;
       background: linear-gradient(135deg, #ffffff, #f3f3f3);
     }
 
+    /* Hero Section */
     .hero {
       display: flex;
       flex-wrap: wrap;
@@ -145,27 +147,99 @@
       transform: scale(1.05);
     }
 
+    /* Cinematic Video Section */
+    .video-section {
+      position: relative;
+      margin-top: 40px;
+      height: 500px;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+
+    .video-section video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Overlay */
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.4);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .overlay h2 {
+      color: #fff;
+      font-size: 38px;
+      letter-spacing: 1px;
+      animation: fadeInUp 1.5s ease forwards;
+      opacity: 0;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
+    }
+
+    /* 🔊 Sound Icon */
+    #soundIcon {
+      position: absolute;
+      bottom: 20px;
+      left: 25px;
+      font-size: 28px;
+      color: white;
+      cursor: pointer;
+      background: rgba(0, 0, 0, 0.4);
+      padding: 10px;
+      border-radius: 50%;
+      transition: 0.3s ease;
+      z-index: 3;
+    }
+
+    #soundIcon:hover {
+      background: rgba(0, 0, 0, 0.7);
+      transform: scale(1.1);
+    }
+
+    /* Info Section */
+    .info-section {
+      max-width: 900px;
+      margin: 50px auto;
+      text-align: justify;
+      font-size: 18px;
+      line-height: 1.8;
+      color: #444;
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    }
+
+    .info-section p {
+      margin-bottom: 18px;
+    }
+
     /* Animations */
     @keyframes fadeInLeft {
-      from {
-        transform: translateX(-50px);
-        opacity: 0;
-      }
-      to {
-        transform: translateX(0);
-        opacity: 1;
-      }
+      from { transform: translateX(-50px); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
     }
 
     @keyframes fadeInRight {
-      from {
-        transform: translateX(50px);
-        opacity: 0;
-      }
-      to {
-        transform: translateX(0);
-        opacity: 1;
-      }
+      from { transform: translateX(50px); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    @keyframes fadeInUp {
+      from { transform: translateY(40px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
     }
 
     @media (max-width: 768px) {
@@ -207,6 +281,15 @@
       .nav a {
         margin-bottom: 0;
       }
+
+      .overlay h2 {
+        font-size: 26px;
+      }
+
+      #soundIcon {
+        font-size: 24px;
+        padding: 8px;
+      }
     }
   </style>
 </head>
@@ -224,7 +307,7 @@
       <a href="fashion.html">Fashion Trend</a>
       <a href="about.html">About Us</a>
       <a href="govnews.html">Government News</a>
-      <a href="quiz.html">Assesment</a>
+      <a href="quiz.html">Assessment</a>
       <a href="translator.html">Baybayin Translator</a>
     </div>
 
@@ -250,11 +333,50 @@
           Let this journey guide you through the artistic beauty and historical power of Baybayin, as we work together to preserve and revive our cultural roots.
         </p>
       </div>
-      <div class="assets/home.jpg">
+
+      <div class="hero-image">
         <img src="assets/home.jpg" alt="Baybayin Script"/>
       </div>
     </section>
+
+    <!-- Cinematic Video Section -->
+    <section class="video-section">
+      <video id="baybayinVideo" autoplay muted loop playsinline>
+        <source src="assets/Home1_BG.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+
+      <!-- Sound Icon -->
+      <div id="soundIcon"><i class="fas fa-volume-mute"></i></div>
+
+      <div class="overlay">
+        <h2>Discover Baybayin Culture</h2>
+      </div>
+    </section>
+
+    <!-- Information Section -->
+    <section class="info-section">
+      <p>
+        Baybayin is an ancient script that was used in the Philippines long before the Spanish colonization. It is a syllabary, meaning each character represents a syllable rather than an individual letter. Despite its historical significance, Baybayin has experienced a revival in recent years, with many Filipinos and cultural enthusiasts eager to learn and preserve this beautiful writing system. For those interested in mastering Baybayin, the Baybayin Quiz Game is an excellent tool that makes learning this script fun, interactive, and engaging.
+      </p>
+      <p>
+        Learning Baybayin is more than just an academic exercise; it’s a way to connect with Filipino heritage and culture. Understanding Baybayin allows you to appreciate the rich history of the Philippines and its pre-colonial past. Additionally, learning Baybayin can be a unique skill that sets you apart, whether you’re an educator, artist, or someone interested in linguistic diversity. By mastering Baybayin, you contribute to the preservation of a cultural treasure that is part of the Philippines’ identity.
+      </p>
+    </section>
   </div>
+
+  <!-- 🎵 Sound Toggle Script -->
+  <script>
+    const video = document.getElementById('baybayinVideo');
+    const soundIcon = document.getElementById('soundIcon');
+
+    soundIcon.addEventListener('click', () => {
+      video.muted = !video.muted;
+      soundIcon.innerHTML = video.muted
+        ? '<i class="fas fa-volume-mute"></i>'
+        : '<i class="fas fa-volume-up"></i>';
+    });
+  </script>
 
 </body>
 </html>
