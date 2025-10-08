@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -127,6 +126,14 @@
       font-size: 13px;
       color: #777;
       margin-bottom: 10px;
+    }
+
+    .lesson-origin {
+      font-size: 14px;
+      color: #333;
+      margin-top: 8px;
+      margin-bottom: 6px;
+      font-weight: 500;
     }
 
     .citation {
@@ -270,9 +277,10 @@
     const lessons = [
       {
         title: "LESSON 1",
-        subtitle: "The Simplicity of the Original Filipino Script | Baybayin",
+        subtitle: "An overview of Baybayin, its origin, and its importance in Filipino culture",
         date: "August 27, 2025",
         videoId: "NE7mwkPdV04",
+        origin: "Source: YouTube – Baybayin.com Official Channel",
         citation: "Pacuno, J.C. (2025). *The Simplicity of the Original Filipino Script | Baybayin.* Baybayin.com. Retrieved from https://baybayin.com"
       },
       {
@@ -280,6 +288,7 @@
         subtitle: "Baybayin: A Filipino Script",
         date: "September 1, 2025",
         videoId: "NE7mwkPdV04",
+        origin: "Source: YouTube – Baybayin.com Official Channel",
         citation: "Pacuno, J.C. (2025). *Baybayin: A Filipino Script.* Baybayin.com. Retrieved from https://baybayin.com"
       },
       {
@@ -287,20 +296,23 @@
         subtitle: "Baybayin 101 (Pagsulat, Pagsasalin, at Pagbabasa)",
         date: "September 10, 2025",
         videoId: "H0kmRql8hfM",
+        origin: "Source: YouTube – Baybayin Educational Series",
         citation: "Pacuno, J.C. (2025). *Baybayin 101 (Pagsulat, Pagsasalin, at Pagbabasa).* Baybayin.com."
       },
       {
         title: "LESSON 4",
-        subtitle: "BAYBAYIN: Video Documentary about the Essence and Importance of the Baybayin Script",
+        subtitle: " Evolution of Baybayin Learn about the history of Baybayin and how it evolved over time  ",
         date: "September 15, 2025",
         videoId: "7GjeNO-KB8s",
+        origin: "Source: YouTube – Baybayin.com Documentary",
         citation: "Pacuno, J.C. (2025). *Baybayin: The Essence and Importance of the Baybayin Script.* Baybayin.com."
       },
       {
         title: "LESSON 5",
-        subtitle: "A complete guide to Baybayin Alphabets with all Baybayin vowels, consonants and numbers.",
+        subtitle: "A complete guide to Baybayin Alphabets with all Baybayin vowels, consonants and numbers & and also Familiarize yourself with Baybayin symbols and their correct pronunciation.",
         date: "September 15, 2025",
         link: "https://www.easynepalityping.com/baybayin-alphabet",
+        origin: "Source: EasyNepaliTyping.com",
         citation: "Pacuno, J.C. (2025). *A Complete Guide to Baybayin Alphabets.* Baybayin.com."
       },
       {
@@ -308,6 +320,7 @@
         subtitle: "Discover the ancient Filipino Baybayin script and its cultural significance.",
         date: "September 15, 2025",
         link: "https://preply.com/en/blog/the-baybayin-alphabet/",
+        origin: "Source: Preply.com Blog – The Baybayin Alphabet",
         citation: "Pacuno, J.C. (2025). *Discovering the Ancient Filipino Baybayin Script.* Baybayin.com."
       }
     ];
@@ -323,6 +336,7 @@
             </div>
             <div class="lesson-subtitle">${lesson.subtitle} | Prepared by: Admin User</div>
             <div class="lesson-date">Posted date: ${lesson.date}</div>
+            <div class="lesson-origin"><strong>${lesson.origin}</strong></div>
         `;
         if (lesson.link) {
           content += `<a class="read-more" href="${lesson.link}" target="_blank">View Lesson</a>`;

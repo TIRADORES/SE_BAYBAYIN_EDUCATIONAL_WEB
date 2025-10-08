@@ -152,9 +152,9 @@
     // === Load login image safely ===
     const img = document.getElementById("loginImage");
     const testImage = new Image();
-    testImage.src = "assets/login-image.jpg";
-    testImage.onload = () => img.src = "assets/login-image.jpg";
-    testImage.onerror = () => img.src = "login-image.jpg";
+    testImage.src = "assets/login_BG.jpg";
+    testImage.onload = () => img.src = "assets/login_BG.jpg";
+    testImage.onerror = () => img.src = "login_BGS.jpg";
 
     // === Login Functionality ===
     document.getElementById("loginForm").addEventListener("submit", function(e) {
