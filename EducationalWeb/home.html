@@ -308,14 +308,15 @@
       <a href="about.html">About Us</a>
       <a href="govnews.html">Government News</a>
       <a href="quiz.html">Assessment</a>
-      <a href="translator.html">Baybayin Translator</a>
+      
     </div>
 
-    <div class="user-section">
-      <p><strong>PACUNO, JOHN CARLO</strong><br>
-        <small>pacunojohncarlo081@gmail.com</small>
+    <!-- Dynamic user section -->
+    <div class="user-section" id="userSection">
+      <p><strong id="userFullname">Loading...</strong><br>
+        <small id="userEmail"></small>
       </p>
-      <a href="login.html">Logout</a>
+      <a href="#" id="logoutBtn">Logout</a>
     </div>
   </div>
 
@@ -376,7 +377,26 @@
         ? '<i class="fas fa-volume-mute"></i>'
         : '<i class="fas fa-volume-up"></i>';
     });
+
+    // ✅ Display logged-in user info and handle logout
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    const userFullname = document.getElementById("userFullname");
+    const userEmail = document.getElementById("userEmail");
+    const logoutBtn = document.getElementById("logoutBtn");
+
+    if (currentUser) {
+      userFullname.textContent = currentUser.fullname;
+      userEmail.textContent = currentUser.email;
+    } else {
+      window.location.href = "login.html";
+    }
+
+    logoutBtn.addEventListener("click", () => {
+      localStorage.removeItem("currentUser");
+      window.location.href = "login.html";
+    });
   </script>
 
 </body>
 </html>
+

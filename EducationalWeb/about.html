@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About Us</title>
-  
-  <link rel="stylesheet" href="style.css">
+
+  <link rel="stylesheet" href="style.css" />
   <!-- Font Awesome for icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  />
 
   <style>
     body {
       display: flex;
       margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
       background: #fafafa;
       color: #333;
     }
@@ -100,17 +103,24 @@
       padding: 20px;
       background: #fff;
       border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
       text-align: center;
       animation: fadeInZoom 1s ease-in-out;
     }
 
     @keyframes fadeInZoom {
-      from { opacity: 0; transform: scale(0.95); }
-      to { opacity: 1; transform: scale(1); }
+      from {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
     }
 
-    .about-container h1, .about-container h2 {
+    .about-container h1,
+    .about-container h2 {
       margin-bottom: 15px;
     }
 
@@ -144,7 +154,7 @@
       font-size: 24px;
       color: white;
       transition: all 0.3s ease;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     }
 
     .icon .tooltip {
@@ -167,25 +177,36 @@
       top: -45px;
     }
 
-    /* ICON COLORS */
-    .facebook span { background: #1877f2; }
-    .instagram span {
-      background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+    .facebook span {
+      background: #1877f2;
     }
-    .gmail span { background: #D44638; }
+    .instagram span {
+      background: radial-gradient(
+        circle at 30% 107%,
+        #fdf497 0%,
+        #fd5949 45%,
+        #d6249f 60%,
+        #285aeb 90%
+      );
+    }
+    .gmail span {
+      background: #d44638;
+    }
 
     .icon:hover span {
       transform: scale(1.15);
-      box-shadow: 0 6px 14px rgba(0,0,0,0.25);
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
     }
 
     /* Chat Modal */
     .chat-modal {
       display: none;
       position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background-color: rgba(0,0,0,0.6);
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
       justify-content: center;
       align-items: center;
       z-index: 999;
@@ -193,13 +214,38 @@
 
     .chat-box {
       background: #fff;
-      padding: 20px;
+      padding: 25px;
       border-radius: 10px;
       width: 90%;
       max-width: 400px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
       animation: fadeInZoom 0.5s;
       position: relative;
+      text-align: center;
+    }
+
+    .chat-box textarea {
+      width: 100%;
+      height: 120px;
+      padding: 10px;
+      margin-top: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      resize: none;
+    }
+
+    .chat-box button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      background: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .chat-box button:hover {
+      background: #0056b3;
     }
 
     .close-btn {
@@ -211,27 +257,40 @@
       color: #888;
     }
 
-    .close-btn:hover { color: #000; }
-
-    .chat-box button {
-      padding: 10px 20px;
-      background: #007BFF;
-      color: #fff;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
+    .close-btn:hover {
+      color: #000;
     }
 
-    .chat-box button:hover {
-      background: #0056b3;
+    .popup-message {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #28a745;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: bold;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease, top 0.3s ease;
+    }
+
+    .popup-message.show {
+      opacity: 1;
+      top: 45%;
     }
   </style>
 </head>
-<body class="dashboard">
 
+<body class="dashboard">
   <!-- Sidebar -->
   <div class="sidebar">
-    <h2>Baybayin.com</h2>
+    <div class="sidebar-header">
+      <h2>Baybayin.com</h2>
+    </div>
+
     <div class="nav">
       <a href="dashboard.html">Home</a>
       <a href="lessons.html">Lessons</a>
@@ -239,11 +298,16 @@
       <a href="about.html" class="active">About Us</a>
       <a href="govnews.html">Government News</a>
       <a href="quiz.html">Assessment</a>
-      <a href="translator.html">Baybayin Translator</a>
+      
     </div>
-    <div class="user-section">
-      <p><strong>PACUNO, JOHN CARLO</strong><br><small>pacunojohncarlo081@gmail.com</small></p>
-      <a href="login.html">Logout</a>
+
+    <!-- ✅ Dynamic User Info -->
+    <div class="user-section" id="userSection">
+      <p>
+        <strong id="userFullname">Loading...</strong><br />
+        <small id="userEmail"></small>
+      </p>
+      <a href="#" id="logoutBtn">Logout</a>
     </div>
   </div>
 
@@ -252,8 +316,8 @@
     <div class="about-container">
       <h1>About Us</h1>
       <p>
-        Welcome to <strong>Baybayin.com</strong> — a digital platform dedicated to preserving
-        and promoting Baybayin culture through modern technology. 
+        Welcome to <strong>Baybayin.com</strong> — a digital platform dedicated
+        to preserving and promoting Baybayin culture through modern technology.
         Explore lessons, trends, and news while staying connected with us.
       </p>
 
@@ -285,29 +349,78 @@
     <div class="chat-box">
       <span class="close-btn" id="closeChat">&times;</span>
       <h3>Send a Message</h3>
-      <p>Send a message to: <strong>pacunojohncarlo81@gmail.com</strong></p>
-      <textarea placeholder="Write your message here..."></textarea>
-      <button onclick="sendFakeMessage()">Send</button>
+      <form id="contactForm" action="https://formsubmit.co/baybayinedu@gmail.com" method="POST">
+        <input type="hidden" name="_captcha" value="false" />
+        <input type="hidden" name="_subject" value="New message from Baybayin.com" />
+        <textarea name="message" placeholder="Write your message here..." required></textarea>
+        <button type="submit">Send</button>
+      </form>
+      <div id="popupMessage" class="popup-message">✅ Message Sent Successfully!</div>
     </div>
   </div>
 
   <script>
-    const gmailBtn = document.getElementById('gmailBtn');
-    const chatModal = document.getElementById('chatModal');
-    const closeChat = document.getElementById('closeChat');
+    // 🔹 Get user info from localStorage
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    const userFullname = document.getElementById("userFullname");
+    const userEmail = document.getElementById("userEmail");
+    const logoutBtn = document.getElementById("logoutBtn");
 
-    gmailBtn.addEventListener('click', () => {
-      chatModal.style.display = 'flex';
-    });
-
-    closeChat.addEventListener('click', () => {
-      chatModal.style.display = 'none';
-    });
-
-    function sendFakeMessage() {
-      alert("Your message has been sent (demo only).");
-      chatModal.style.display = 'none';
+    if (currentUser) {
+      userFullname.textContent = currentUser.fullname;
+      userEmail.textContent = currentUser.email;
+    } else {
+      window.location.href = "login.html";
     }
+
+    logoutBtn.addEventListener("click", () => {
+      localStorage.removeItem("currentUser");
+      window.location.href = "login.html";
+    });
+
+    // 🔹 Chat modal and form handling
+    const gmailBtn = document.getElementById("gmailBtn");
+    const chatModal = document.getElementById("chatModal");
+    const closeChat = document.getElementById("closeChat");
+    const contactForm = document.getElementById("contactForm");
+    const popupMessage = document.getElementById("popupMessage");
+
+    gmailBtn.addEventListener("click", () => (chatModal.style.display = "flex"));
+    closeChat.addEventListener("click", () => (chatModal.style.display = "none"));
+    window.addEventListener("click", (e) => {
+      if (e.target === chatModal) chatModal.style.display = "none";
+    });
+
+    contactForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const formData = new FormData(contactForm);
+
+      // Include sender name/email
+      if (currentUser) {
+        formData.append("Sender Name", currentUser.fullname);
+        formData.append("Sender Email", currentUser.email);
+      }
+
+      try {
+        const response = await fetch(contactForm.action, {
+          method: "POST",
+          body: formData,
+        });
+
+        if (response.ok) {
+          popupMessage.classList.add("show");
+          contactForm.reset();
+          setTimeout(() => {
+            popupMessage.classList.remove("show");
+            chatModal.style.display = "none";
+          }, 2000);
+        } else {
+          alert("⚠️ Something went wrong. Please try again.");
+        }
+      } catch (error) {
+        alert("❌ Failed to send message. Check your internet connection.");
+      }
+    });
   </script>
 </body>
 </html>

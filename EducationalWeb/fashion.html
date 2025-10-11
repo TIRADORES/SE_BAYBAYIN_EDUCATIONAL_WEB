@@ -1,19 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fashion Trend</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Baybayin | Home</title>
+  <link rel="stylesheet" href="style.css" />
   <!-- Font Awesome for sound icon -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
     body {
       display: flex;
-      margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #fafafa;
+      background: #fefefe;
       color: #333;
     }
 
@@ -32,7 +36,7 @@
       z-index: 2;
     }
 
-    .sidebar h2 {
+    .sidebar-header h2 {
       font-size: 22px;
       margin-bottom: 20px;
     }
@@ -58,8 +62,8 @@
     }
 
     .nav a:hover {
-      color: #ffffff;
       background: black;
+      color: white;
       border-radius: 5px;
       padding-left: 10px;
     }
@@ -82,52 +86,106 @@
       font-size: 14px;
     }
 
-    /* Main content */
-    .main-content {
+    /* Main Content */
+    .main {
       margin-left: 240px;
+      padding: 40px 30px;
       flex: 1;
-      overflow-y: auto;
-      position: relative;
+      background: linear-gradient(135deg, #ffffff, #f3f3f3);
     }
 
-    /* ==== Background Video Section ==== */
+    /* Hero Section */
+    .hero {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 0;
+      min-height: 80vh;
+    }
+
+    .hero-text {
+      flex: 1 1 400px;
+      max-width: 600px;
+      padding: 20px;
+      animation: fadeInLeft 1s ease forwards;
+      opacity: 0;
+    }
+
+    .hero-text h1 {
+      font-size: 42px;
+      margin-bottom: 20px;
+      color: #1a1a1a;
+    }
+
+    .hero-text h1 span {
+      color: #aa3f39;
+    }
+
+    .hero-text p {
+      font-size: 18px;
+      color: #444;
+      margin-bottom: 20px;
+    }
+
+    .hero-image {
+      flex: 1 1 300px;
+      max-width: 500px;
+      padding: 20px;
+      animation: fadeInRight 1s ease forwards;
+      opacity: 0;
+    }
+
+    .hero-image img {
+      width: 100%;
+      border-radius: 15px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      transition: transform 0.5s ease;
+    }
+
+    .hero-image img:hover {
+      transform: scale(1.05);
+    }
+
+    /* Cinematic Video Section */
     .video-section {
       position: relative;
-      width: 100%;
-      height: 350px;
+      margin-top: 40px;
+      height: 500px;
+      border-radius: 15px;
       overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
     }
 
     .video-section video {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      min-width: 100%;
-      min-height: 100%;
-      transform: translate(-50%, -50%);
+      width: 100%;
+      height: 100%;
       object-fit: cover;
-      filter: brightness(60%);
+      display: block;
     }
 
-    .video-overlay {
+    /* Overlay */
+    .overlay {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
+      background: rgba(0,0,0,0.4);
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      z-index: 1;
-      flex-direction: column;
+      text-align: center;
     }
 
-    .video-overlay h1 {
-      color: white;
-      font-size: 42px;
-      font-weight: bold;
-      text-shadow: 0 3px 6px rgba(0, 0, 0, 0.6);
-      margin-bottom: 10px;
+    .overlay h2 {
+      color: #fff;
+      font-size: 38px;
+      letter-spacing: 1px;
+      animation: fadeInUp 1.5s ease forwards;
+      opacity: 0;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
     }
 
     /* 🔊 Sound Icon */
@@ -150,103 +208,82 @@
       transform: scale(1.1);
     }
 
-    /* ==== Fashion Grid Section ==== */
-    .fashion-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 25px;
-      padding: 30px;
-      max-width: 1200px;
-      margin: 0 auto;
-      position: relative;
-      z-index: 2;
-    }
-
-    .fashion-card {
-      background: #fff;
-      border: 1px solid #ddd;
-      border-radius: 12px;
-      overflow: hidden;
-      text-decoration: none;
-      color: inherit;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-      display: flex;
-      flex-direction: column;
-      cursor: pointer;
-    }
-
-    .fashion-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
-    }
-
-    .fashion-card img {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-      border-bottom: 1px solid #eee;
-    }
-
-    .card-content {
-      padding: 15px 18px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      flex-grow: 1;
-    }
-
-    .card-title {
+    /* Info Section */
+    .info-section {
+      max-width: 900px;
+      margin: 50px auto;
+      text-align: justify;
       font-size: 18px;
-      font-weight: bold;
-      margin-bottom: 6px;
-      color: #111;
+      line-height: 1.8;
+      color: #444;
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
     }
 
-    .card-subtitle {
-      font-size: 14px;
-      color: #555;
-      margin-bottom: 10px;
+    .info-section p {
+      margin-bottom: 18px;
     }
 
-    .card-date {
-      font-size: 12px;
-      color: #888;
-      margin-bottom: 15px;
+    /* Animations */
+    @keyframes fadeInLeft {
+      from { transform: translateX(-50px); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
     }
 
-    .buy-btn {
-      background: black;
-      color: white;
-      text-align: center;
-      padding: 8px 0;
-      border-radius: 8px;
-      font-weight: bold;
-      text-decoration: none;
-      transition: background 0.3s, transform 0.2s;
+    @keyframes fadeInRight {
+      from { transform: translateX(50px); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
     }
 
-    .buy-btn:hover {
-      background: #333;
-      transform: scale(1.05);
+    @keyframes fadeInUp {
+      from { transform: translateY(40px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
     }
 
     @media (max-width: 768px) {
-      .fashion-grid {
-        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      .hero {
+        flex-direction: column-reverse;
+        text-align: center;
+      }
+
+      .hero-text h1 {
+        font-size: 32px;
+      }
+
+      .main {
+        margin-left: 0;
+      }
+
+      .sidebar {
+        position: static;
+        width: 100%;
+        height: auto;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px;
+        border-right: none;
+        border-bottom: 1px solid #ccc;
+      }
+
+      .sidebar-header,
+      .user-section {
+        display: none;
+      }
+
+      .nav {
+        display: flex;
         gap: 15px;
       }
 
-      .fashion-card img {
-        height: 160px;
+      .nav a {
+        margin-bottom: 0;
       }
 
-      .video-section {
-        height: 250px;
-      }
-
-      .video-overlay h1 {
-        font-size: 28px;
+      .overlay h2 {
+        font-size: 26px;
       }
 
       #soundIcon {
@@ -256,91 +293,108 @@
     }
   </style>
 </head>
-
 <body>
+
   <!-- Sidebar -->
   <div class="sidebar">
-    <h2>Baybayin.com</h2>
+    <div class="sidebar-header">
+      <h2>Baybayin.com</h2>
+    </div>
+
     <div class="nav">
-      <a href="dashboard.html">Home</a>
+      <a href="home.html" class="active">Home</a>
       <a href="lessons.html">Lessons</a>
-      <a href="fashion.html" class="active">Fashion Trend</a>
+      <a href="fashion.html">Fashion Trend</a>
       <a href="about.html">About Us</a>
       <a href="govnews.html">Government News</a>
       <a href="quiz.html">Assessment</a>
-      <a href="translator.html">Baybayin Translator</a>
     </div>
-    <div class="user-section">
-      <p><strong>PACUNO, JOHN CARLO</strong><br><small>pacunojohncarlo081@gmail.com</small></p>
-      <a href="login.html">Logout</a>
+
+    <!-- ✅ Updated dynamic user display -->
+    <div class="user-section" id="userSection">
+      <p><strong id="userFullname">Loading...</strong><br>
+        <small id="userEmail"></small>
+      </p>
+      <a href="#" id="logoutBtn">Logout</a>
     </div>
   </div>
 
   <!-- Main Content -->
-  <div class="main-content">
+  <div class="main">
+    <section class="hero">
+      <div class="hero-text">
+        <h1><span>Baybayin</span>: The Beauty of Our Ancient Script</h1>
+        <p>
+          Baybayin is more than just an ancient Filipino script—it is a vibrant symbol of identity, culture, and pride.
+          Once used by our ancestors to write poetry, laws, and love letters, Baybayin represents a rich heritage that continues
+          to inspire modern generations.
+        </p>
+        <p>
+          Let this journey guide you through the artistic beauty and historical power of Baybayin, as we work together to preserve and revive our cultural roots.
+        </p>
+      </div>
 
-    <!-- 🎥 Video Banner with Sound Icon -->
-    <div class="video-section">
-      <video id="fashionVideo" autoplay loop playsinline muted>
-        <source src="assets/fashion_BG.mp4" type="video/mp4">
-        Your browser does not support HTML5 video.
+      <div class="hero-image">
+        <img src="assets/home.jpg" alt="Baybayin Script"/>
+      </div>
+    </section>
+
+    <!-- Cinematic Video Section -->
+    <section class="video-section">
+      <video id="baybayinVideo" autoplay muted loop playsinline>
+        <source src="assets/Home1_BG.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
       </video>
 
+      <!-- Sound Icon -->
       <div id="soundIcon"><i class="fas fa-volume-mute"></i></div>
 
-      <div class="video-overlay">
-        <h1>Fashion Trend</h1>
+      <div class="overlay">
+        <h2>Discover Baybayin Culture</h2>
       </div>
-    </div>
+    </section>
 
-    <!-- Fashion Items -->
-    <div class="fashion-grid">
-      <script>
-        const fashionItems = [
-          {img: "assets/fashion1.jpg", title: "Baybayin Shirt 1", desc: "Trendy cultural wear", date: "Sept 30, 2025", link: "https://shopee.ph/product/572848318/23904781854"},
-          {img: "assets/fashion2.jpg", title: "Baybayin Shirt 2", desc: "Minimalist design", date: "Sept 29, 2025", link: "https://shopee.ph/product/1267598080/28901173465"},
-          {img: "assets/fashion3.jpg", title: "Baybayin Shirt 3", desc: "Casual streetwear", date: "Sept 28, 2025", link: "https://shopee.ph/product/671402/17783167561"},
-          {img: "assets/fashion4.jpg", title: "Baybayin Shirt 4", desc: "Modern look", date: "Sept 27, 2025", link: "https://shopee.ph/product/594786017/27901429573"},
-          {img: "assets/fashion5.jpg", title: "Baybayin Hoodie", desc: "Cozy street style", date: "Sept 26, 2025", link: "https://shopee.ph/product/658001299/10485971696"},
-          {img: "assets/fashion6.jpg", title: "Baybayin Jacket", desc: "Premium style", date: "Sept 25, 2025", link: "https://shopee.ph/product/658001299/10485971696"},
-          {img: "assets/fashion7.jpg", title: "Casual Barong Tagalog For Women", desc: "Modern Asian Attire", date: "Oct 13, 2025", link: "https://shopee.ph/product/1479398607/41206509829"},
-          {img: "assets/fashion8.jpg", title: "Modern Filipiniana Ladies Barong", desc: "Elegant modern style", date: "Oct 2, 2025", link: "https://shopee.ph/product/118931856/42613026296"},
-          {img: "assets/fashion9.jpg", title: "Maria Clara Inspired Set", desc: "Filipiniana top and satin skirt", date: "Sept 3, 2025", link: "https://shopee.ph/product/799199562/43808679474"},
-          {img: "assets/fashion10.jpg", title: "Maria Clara Modern Set", desc: "Traditional meets modern", date: "Sept 3, 2025", link: "https://shopee.ph/product/799199562/43808679474"},
-          {img: "assets/fashion11.jpg", title: "Artisan Embroidery Barong", desc: "Piña black organza for men", date: "Sept 29, 2025", link: "https://shopee.ph/product/710358527/16560363902"},
-          {img: "assets/fashion12.jpg", title: "Barong Tagalog Piña Organza", desc: "With Mid Piping & Chinese Collar", date: "Sept 26, 2025", link: "https://shopee.ph/Barong-Tagalog-Pina-Organza-with-Mid-Piping-Chinese-Collar(Random-Burda)-i.136889121.20894280232"}
-        ];
-
-        document.write(
-          fashionItems.map(item => `
-            <div class="fashion-card">
-              <img src="${item.img}" alt="${item.title}">
-              <div class="card-content">
-                <div>
-                  <div class="card-title">${item.title}</div>
-                  <div class="card-subtitle">${item.desc}</div>
-                  <div class="card-date">Posted: ${item.date}</div>
-                </div>
-                <a class="buy-btn" href="${item.link}" target="_blank">Buy Now</a>
-              </div>
-            </div>
-          `).join('')
-        );
-      </script>
-    </div>
+    <!-- Information Section -->
+    <section class="info-section">
+      <p>
+        Baybayin is an ancient script that was used in the Philippines long before the Spanish colonization. It is a syllabary, meaning each character represents a syllable rather than an individual letter. Despite its historical significance, Baybayin has experienced a revival in recent years, with many Filipinos and cultural enthusiasts eager to learn and preserve this beautiful writing system. For those interested in mastering Baybayin, the Baybayin Quiz Game is an excellent tool that makes learning this script fun, interactive, and engaging.
+      </p>
+      <p>
+        Learning Baybayin is more than just an academic exercise; it’s a way to connect with Filipino heritage and culture. Understanding Baybayin allows you to appreciate the rich history of the Philippines and its pre-colonial past. Additionally, learning Baybayin can be a unique skill that sets you apart, whether you’re an educator, artist, or someone interested in linguistic diversity. By mastering Baybayin, you contribute to the preservation of a cultural treasure that is part of the Philippines’ identity.
+      </p>
+    </section>
   </div>
 
-  <!-- 🎵 Toggle Sound Script -->
+  <!-- 🎵 Sound Toggle Script -->
   <script>
-    const fashionVideo = document.getElementById('fashionVideo');
+    const video = document.getElementById('baybayinVideo');
     const soundIcon = document.getElementById('soundIcon');
 
     soundIcon.addEventListener('click', () => {
-      fashionVideo.muted = !fashionVideo.muted;
-      soundIcon.innerHTML = fashionVideo.muted
+      video.muted = !video.muted;
+      soundIcon.innerHTML = video.muted
         ? '<i class="fas fa-volume-mute"></i>'
         : '<i class="fas fa-volume-up"></i>';
     });
+
+    // ✅ Dynamic User Info Script
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    const userFullname = document.getElementById("userFullname");
+    const userEmail = document.getElementById("userEmail");
+    const logoutBtn = document.getElementById("logoutBtn");
+
+    if (currentUser) {
+      userFullname.textContent = currentUser.fullname;
+      userEmail.textContent = currentUser.email;
+    } else {
+      window.location.href = "login.html";
+    }
+
+    logoutBtn.addEventListener("click", () => {
+      localStorage.removeItem("currentUser");
+      window.location.href = "login.html";
+    });
   </script>
+
 </body>
 </html>
